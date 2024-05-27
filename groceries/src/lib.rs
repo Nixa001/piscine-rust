@@ -1,6 +1,6 @@
 pub fn insert(vec: &mut Vec<String>, val: String) {
     vec.push(val);
-    println!("{}",vec);
+    // println!("{}",vec);
 }
 
 pub fn at_index(vec: &Vec<String>, index: usize) -> String {
