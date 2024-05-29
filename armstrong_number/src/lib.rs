@@ -1,16 +1,16 @@
 pub fn is_armstrong_number(nb: u32) -> Option<u32>{
     let num_str = nb.to_string();
     let power = num_str.len() as u32;
-    let mut sum = 0;
+    let mut res = 0;
 
     for c in num_str.chars() {
         let digit = c.to_digit(10).expect(" ");
-        sum += digit.pow(power);
+        res += digit.pow(power);
     }
 
     // println!("{}", sum);
-    if sum == nb {
-        Some(sum)
+    if res == nb {
+        Some(res)
     } else {
         None
     }
