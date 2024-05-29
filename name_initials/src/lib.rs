@@ -1,7 +1,7 @@
 pub fn initials(names: Vec<&str>) -> Vec<String> {
     let mut initials: Vec<String> = vec![];
     
-    for name in names.iter() {
+    for name in names {
         let mut temp_string = String::new();
         let name_split = name.split_whitespace();
         let mut index = 0;
@@ -20,10 +20,10 @@ pub fn initials(names: Vec<&str>) -> Vec<String> {
     initials
 }
 
-// fn main() {
-//     let names = vec!["Harry Potter", "Someone Else", "J. L.", "Barack Obama"];
-//     println!("{:?}", initials(names));
-// }
+fn main() {
+    let names = vec!["Harry Potter", "Someone Else", "J. L.", "Barack Obama"];
+    println!("{:?}", initials(names));
+}
 
 // And its output
 
