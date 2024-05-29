@@ -1,25 +1,50 @@
 pub fn nbr_function(c: i32) -> (i32, f64, f64) {
     (c, (c as f64).exp(), (c.abs() as f64).ln())
 }
-// pub fn str_function(a: String) -> (String, String) {
-//     let mut result = String::new();
+pub fn str_function(a: String) -> (String, String) {
 
-//     for c in a.chars() {
-//         if let Some(digit) = c.to_digit(10) {
-//             let exp_value = digit as f64;
-//             let exp_result = f64::exp(exp_value);
+    let mut str_res = String::new();
+    let vec_str = a.split(" ");
+    for word in vec_str {
+        match word.parse::<f64>() {
+            Ok(val) => {
+                str_res.push_str(&val.exp().to_string());
+                str_res.push_str(" ");
+            },
+            Err(_) => (),
+        }
+    }
+    str_res.pop();
+    (a, str_res)
 
-//             result.push_str(&exp_result.to_string());
-//             result.push(' ');
-//         }
-//     }
+}
 
-//     (a, result.trim().to_string())
-// }
+pub fn vec_function(b: Vec<i32>) -> (Vec<i32>, Vec<f64>) {
+    let mut float_vec:Vec<f64>  = vec![];
 
-// pub fn vec_function(b: Vec<i32>) -> (Vec<i32>, Vec<f64>) {
-//     let log = b.iter()
-//                       .map(|&val| (val.abs() as f64).ln())
-//                       .collect::<Vec<f64>>();
-//     (b.clone(), log)
-// }
+    for num in b.clone(){
+        print!("{}", num);
+        float_vec.push(((num as f64).abs()).ln())
+    }
+
+    (b, float_vec)
+}
+
+fn main() {
+    let a: i32 = 0;
+    let b = String::from("1 2 4 5 6");
+    let c = vec![1, 2, 4, 5];
+
+    println!("{:?}", nbr_function(a));
+    println!("{:?}", str_function(b));
+    println!("{:?}", vec_function(c));
+}
+
+
+// And its output:
+
+// $ cargo run
+// (0, 1.0, -inf)
+// ("1 2 4 5 6", "2.718281828459045 7.38905609893065 54.598150033144236 148.4131591025766 403.4287934927351")
+// ([1, 2, 4, 5], [0.0, 0.6931471805599453, 1.3862943611198906, 1.6094379124341003])
+// $
