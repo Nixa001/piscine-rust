@@ -1,91 +1,66 @@
-extern crate rand;
 use rand::Rng;
-
-#[derive(Debug, PartialEq,Eq)]
+#[derive(Debug, PartialEq, Eq)]
 pub enum Suit {
     Heart,
     Diamond,
     Spade,
     Club,
 }
+#[derive(Debug, PartialEq, Eq)]
+pub enum Rank {
+    Ace, 
+    King, 
+    Queen,
+    Jack,
+    Numb(u8),
+}
 
 impl Suit {
     pub fn random() -> Suit {
         let mut rng = rand::thread_rng();
-        match rng.gen_range(1..=4) {
-            1 => Suit::Heart,
-            2 => Suit::Diamond,
-            3 => Suit::Spade,
-            _ => Suit::Club,
-        }
+        let value = rng.gen_range(0, 4);
+        Suit::translate(value)
     }
 
     pub fn translate(value: u8) -> Suit {
         match value {
-            1 => Suit::Heart,
-            2 => Suit::Diamond,
-            3 => Suit::Spade,
-            4 => Suit::Club,
-            _ => panic!("Invalid"),
+            0 => Suit::Heart,
+            1 => Suit::Diamond,
+            2 => Suit::Spade,
+            3 => Suit::Club,
+            _ => Suit::Heart,
         }
     }
-}
-
-#[derive(Debug, PartialEq,Eq)]
-pub enum Rank {
-    Ace,
-    Number(u8),
-    Jack,
-    Queen,
-    King,
 }
 
 impl Rank {
     pub fn random() -> Rank {
         let mut rng = rand::thread_rng();
-        match rng.gen_range(1..=13) {
-            1 => Rank::Ace,
-            2..=10 => Rank::Number(rng.gen_range(2..=10)),
-            11 => Rank::Jack,
-            12 => Rank::Queen,
-            13 => Rank::King,
-            _ => panic!("Invali"),
-        }
+        let value = rng.gen_range(0, 13);
+        Rank::translate(value)
     }
 
     pub fn translate(value: u8) -> Rank {
         match value {
-            1 => Rank::Ace,
-            2..=10 => Rank::Number(value),
-            11 => Rank::Jack,
-            12 => Rank::Queen,
-            13 => Rank::King,
-            _ => panic!("Invalid"),
+            0 => Rank::Ace,
+            1 => Rank::King,
+            2 => Rank::Queen,
+            3 => Rank::Jack,
+            _ => Rank::Numb(value),
         }
     }
 }
-
-#[derive(Debug, PartialEq,Eq)]
+#[derive(Debug, Eq, PartialEq)]
 pub struct Card {
     pub suit: Suit,
     pub rank: Rank,
 }
-
+//
 pub fn winner_card(card: &Card) -> bool {
-    matches!(card, Card { suit: Suit::Spade, rank: Rank::Ace })
+    match card.rank {
+        Rank::Ace => true,
+        _ => false,
+    }
 }
 
-// Main function for testing
-// fn main() {
-//     let your_card = Card {
-//         rank: Rank::random(),
-//         suit: Suit::random(),
-//     };
 
-//     println!("Your card is {:?}", your_card);
-
-//     // Now if the card is an Ace of Spades print "You are the winner"
-//     if winner_card(&your_card) {
-//         println!("You are the winner!");
-//     }
-// }
