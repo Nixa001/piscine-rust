@@ -1,14 +1,27 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
+pub fn edit_distance(source: &str, target: &str) -> usize {
+    let m = source.len();
+    let n = target.len();
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+    if m > n{
+        m - n + 1
+    }else{
+        n - m + 1
     }
 }
+
+
+// fn main() {
+// 	let source = "alignment";
+// 	let target = "assignment";
+// 	println!(
+// 		"It's necessary to make {} change(s) to {}, to get {}",
+// 		edit_distance(source, target),
+// 		source,
+// 		target
+// 	);
+// }
+// And its output:
+
+// $ cargo run
+// It's necessary to make 2 change(s) to alignment, to get assignment
+// $
