@@ -1,5 +1,5 @@
 // extern crate rand;
-use rand::Rng;
+// use rand::Rng;
 
 #[derive(Debug, PartialEq)]
 pub enum Suit {
