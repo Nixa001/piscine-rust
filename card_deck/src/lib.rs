@@ -56,6 +56,7 @@ pub struct Card {
     pub rank: Rank,
 }
 //
+// Finally define the function winner_card which returns true if the card passed as an argument is an ace of spades.
 pub fn winner_card(card: &Card) -> bool {
     match card.rank {
         Rank::Ace => true,
@@ -64,3 +65,9 @@ pub fn winner_card(card: &Card) -> bool {
 }
 
 
+
+// And its output
+
+// $ cargo run
+// Your card is Card { suit: Club, rank: Ace }
+// $
