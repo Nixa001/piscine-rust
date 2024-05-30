@@ -1,14 +1,18 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+pub fn char_length(s: &str) -> usize {
+    s.len()
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+// fn main() {
+// 	println!("length of {} = {}", "❤", char_length("❤"));
+// 	println!("length of {} = {}", "形声字", char_length("形聲字"));
+// 	println!("length of {} = {}", "change", char_length("change"));
+// 	println!("length of {} = {}", "😍", char_length("😍"));
+// }
+// And its output
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+// $ cargo run
+// length of ❤ = 1
+// length of 形声字 = 3
+// length of change = 6
+// length of 😍 = 1
+// $
