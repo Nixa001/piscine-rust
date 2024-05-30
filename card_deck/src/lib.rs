@@ -11,13 +11,8 @@ pub enum Suit {
 impl Suit {
     
     pub fn random() -> Suit {
-        let mut rng = rand::thread_rng();
-        match rng.gen_range(1..=4) {
-            1 => Suit::Heart,
-            2 => Suit::Diamond,
-            3 => Suit::Spade,
-            _ => Suit::Club,
-        }
+        let mut value = rand::thread_rng().rng.gen_range(1, 5);
+        Suit::translate(value)
     }
     
     pub fn translate(value: u8) -> Suit {
@@ -40,15 +35,8 @@ pub enum Rank {
 }
 impl Rank {
     pub fn random() -> Rank {
-        let mut rng = rand::thread_rng();
-        match rng.gen_range(1..=13) {
-            1 => Rank::Ace,
-            2..=10 => Rank::Number(rng.gen_range(2..=10)),
-            11 => Rank::Jack,
-            12 => Rank::Queen,
-            13 => Rank::King,
-            _ => panic!("Erreur : valeur de rang invalide"),
-        }
+        let mut value = rand::thread_rng().rng.gen_range(1, 5);
+        Rank::translate(value)
     }
 
     pub fn translate(value: u8) -> Rank {
