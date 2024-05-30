@@ -1,5 +1,5 @@
-pub fn sum(a:  Vec<i32>) -> i32 {
-    a.iter().sum()
+pub fn sum(a: &[i32]) -> i32 {
+   a.iter().sum::<i32>()
 }
 
 pub fn thirtytwo_tens() -> [i32; 32] {
@@ -13,9 +13,9 @@ pub fn thirtytwo_tens() -> [i32; 32] {
 //     let a1: Vec<i32> = (1..11).collect();
 //     let b = [5; 10]; 
 
-//     println!("The Sum of the elements in {:?} = {}", a, sum(a.to_vec()));
-//     println!("The Sum of the elements in {:?} = {}", a1, sum(a1.to_vec()));
-//     println!("The Sum of the elements in {:?} = {}", b, sum(b.to_vec()));
+//     println!("The Sum of the elements in {:?} = {}", a, sum(&a));
+//     println!("The Sum of the elements in {:?} = {}", a1, sum(&a1));
+//     println!("The Sum of the elements in {:?} = {}", b, sum(&b));
 
 //     println!(
 //         "Array size {} with only 10's in it {:?}",
