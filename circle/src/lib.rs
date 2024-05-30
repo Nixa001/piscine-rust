@@ -1,91 +1,72 @@
-// extern crate rand;
-use rand::Rng;
-
-#[derive(Debug, PartialEq,Eq)]
-pub enum Suit {
-    Heart,
-    Diamond,
-    Spade,
-    Club,
+#[derive(Debug)]
+pub struct Point {
+    pub x: f64,
+    pub y: f64,
 }
 
-impl Suit {
-    pub fn random() -> Suit {
-        let mut rng = rand::thread_rng();
-        match rng.gen_range(1..=4) {
-            1 => Suit::Heart,
-            2 => Suit::Diamond,
-            3 => Suit::Spade,
-            _ => Suit::Club,
+impl Point {
+    pub fn distance(&self, val: &Point) -> f64 {
+        ((self.x - val.x).powi(2) + (self.y - val.y).powi(2)).sqrt()
+    }
+}
+#[derive(Debug)]
+pub struct Circle {
+    pub center: Point,
+    pub radius: f64,
+}
+
+impl Circle {
+    pub fn new(x: f64, y: f64, radius: f64) -> Circle {
+        Circle {
+            center: Point { x, y },
+            radius,
         }
     }
 
-    pub fn translate(value: u8) -> Suit {
-        match value {
-            1 => Suit::Heart,
-            2 => Suit::Diamond,
-            3 => Suit::Spade,
-            4 => Suit::Club,
-            _ => panic!("Invalid value for Suit"),
-        }
+    pub fn diameter(&self) -> f64 {
+        self.radius * 2.0
+    }
+
+    pub fn area(&self) -> f64 {
+        std::f64::consts::PI * self.radius * self.radius
+    }
+
+    pub fn intersect(&self, val2: &Circle) -> bool {
+        self.center.distance(&val2.center) < (self.radius + val2.radius)
     }
 }
 
-#[derive(Debug, PartialEq,Eq)]
-pub enum Rank {
-    Ace,
-    Number(u8),
-    Jack,
-    Queen,
-    King,
-}
 
-impl Rank {
-    pub fn random() -> Rank {
-        let mut rng = rand::thread_rng();
-        match rng.gen_range(1..=13) {
-            1 => Rank::Ace,
-            2..=10 => Rank::Number(rng.gen_range(2..=10)),
-            11 => Rank::Jack,
-            12 => Rank::Queen,
-            13 => Rank::King,
-            _ => panic!("Invalid value for Rank"),
-        }
-    }
-
-    pub fn translate(value: u8) -> Rank {
-        match value {
-            1 => Rank::Ace,
-            2..=10 => Rank::Number(value),
-            11 => Rank::Jack,
-            12 => Rank::Queen,
-            13 => Rank::King,
-            _ => panic!("Invalid value for Rank"),
-        }
-    }
-}
-
-#[derive(Debug, PartialEq,Eq)]
-pub struct Card {
-    pub suit: Suit,
-    pub rank: Rank,
-}
-
-pub fn winner_card(card: &Card) -> bool {
-    matches!(card, Card { suit: Suit::Spade, rank: Rank::Ace })
-}
-
-// Main function for testing
 // fn main() {
-//     let your_card = Card {
-//         rank: Rank::random(),
-//         suit: Suit::random(),
-//     };
+// 	let circle = Circle::new(500.0, 500.0, 150.0);
+// 	let circle1 = Circle {
+// 		center: Point { x: 80.0, y: 115.0 },
+// 		radius: 30.0,
+// 	};
+// 	let point_a = Point { x: 1.0, y: 1.0 };
+// 	let point_b = Point { x: 0.0, y: 0.0 };
+// 	println!("circle = {:?} area = {}", circle, circle.area());
+// 	println!("circle = {:?} diameter = {}", circle, circle.diameter());
+// 	println!("circle1 = {:?} diameter = {}", circle1, circle1.diameter());
+// 	println!(
+// 		"circle and circle1 intersect = {}",
+// 		circle.intersect(&circle1)
+// 	);
 
-//     println!("Your card is {:?}", your_card);
+// 	println!(
+// 		"distance between {:?} and {:?} is {}",
+// 		point_a,
+// 		point_b,
+// 		point_a.distance(&point_b)
+// 	);
 
-//     // Now if the card is an Ace of Spades print "You are the winner"
-//     if winner_card(&your_card) {
-//         println!("You are the winner!");
-//     }
 // }
+// And its output
+
+// $ cargo run
+// circle = Circle { center: Point { x: 500.0, y: 500.0 }, radius: 150.0 } area = 70685.83470577035
+// circle = Circle { center: Point { x: 500.0, y: 500.0 }, radius: 150.0 } diameter = 300
+// circle1 = Circle { center: Point { x: 80.0, y: 115.0 }, radius: 30.0 } diameter = 60
+// circle and circle1 intersect = false
+// distance between Point { x: 1.0, y: 1.0 } and Point { x: 0.0, y: 0.0 } is 1.4142135623730951
+// $
