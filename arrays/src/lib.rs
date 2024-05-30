@@ -1,14 +1,33 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+pub fn sum(a:  Vec<i32>) -> i32 {
+    a.iter().sum()
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+pub fn thirtytwo_tens() -> [i32; 32] {
+    [10; 32]
 }
+
+
+
+// fn main() {
+//     let a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+//     let a1: Vec<i32> = (1..11).collect();
+//     let b = [5; 10]; 
+
+//     println!("The Sum of the elements in {:?} = {}", a, sum(a.to_vec()));
+//     println!("The Sum of the elements in {:?} = {}", a1, sum(a1.to_vec()));
+//     println!("The Sum of the elements in {:?} = {}", b, sum(b.to_vec()));
+
+//     println!(
+//         "Array size {} with only 10's in it {:?}",
+//         thirtytwo_tens().len(),
+//         thirtytwo_tens()
+//     );
+// }
+// And its output:
+
+// $ cargo run
+// The Sum of the elements in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] = 55
+// The Sum of the elements in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] = 55
+// The Sum of the elements in [5, 5, 5, 5, 5, 5, 5, 5, 5, 5] = 50
+// Array size 32 with only 10's in it [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+// $
