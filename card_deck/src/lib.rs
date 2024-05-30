@@ -1,15 +1,15 @@
-extern crate rand;
-use rand::Rng;
+extern crate rand;  
+use rand::Rng; 
 
-#[derive(Debug, PartialEq,Eq)]
+#[derive(Debug, PartialEq)]
 pub enum Suit {
-    Heart,
-    Diamond,
-    Spade,
-    Club,
+    Heart,   
+    Diamond, 
+    Spade,   
+    Club,    
 }
-
 impl Suit {
+    
     pub fn random() -> Suit {
         let mut rng = rand::thread_rng();
         match rng.gen_range(1..=4) {
@@ -19,27 +19,25 @@ impl Suit {
             _ => Suit::Club,
         }
     }
-
+    
     pub fn translate(value: u8) -> Suit {
         match value {
-            1 => Suit::Heart,
-            2 => Suit::Diamond,
-            3 => Suit::Spade,
-            4 => Suit::Club,
-            _ => panic!("err"),
+            1 => Suit::Heart,   
+            2 => Suit::Diamond, 
+            3 => Suit::Spade,   
+            _ => Suit::Club,    
         }
     }
 }
 
-#[derive(Debug, PartialEq,Eq)]
+#[derive(Debug, PartialEq)]
 pub enum Rank {
-    Ace,
-    Number(u8),
-    Jack,
-    Queen,
-    King,
+    Ace,        
+    King,       
+    Queen,      
+    Jack,       
+    Number(u8), 
 }
-
 impl Rank {
     pub fn random() -> Rank {
         let mut rng = rand::thread_rng();
@@ -49,7 +47,7 @@ impl Rank {
             11 => Rank::Jack,
             12 => Rank::Queen,
             13 => Rank::King,
-            _ => panic!("err"),
+            _ => panic!("Erreur : valeur de rang invalide"),
         }
     }
 
@@ -60,20 +58,26 @@ impl Rank {
             11 => Rank::Jack,
             12 => Rank::Queen,
             13 => Rank::King,
-            _ => panic!("err"),
+            _ => panic!("Erreur : valeur de rang invalide"),
         }
     }
 }
 
-#[derive(Debug, PartialEq,Eq)]
+#[derive(Debug, PartialEq)]
 pub struct Card {
     pub suit: Suit,
     pub rank: Rank,
 }
 
 pub fn winner_card(card: &Card) -> bool {
-    matches!(card, Card { suit: Suit::Spade, rank: Rank::Ace })
-}
+    let winner = Card {
+        suit: Suit::Spade, 
+        rank: Rank::Ace,   
+    };
+    *card == winner 
+} 
+
+ 
 
 // Main function for testing
 // fn main() {
