@@ -1,4 +1,4 @@
-extern crate rand;
+// extern crate rand;
 use rand::Rng;
 
 #[derive(Debug, PartialEq)]
