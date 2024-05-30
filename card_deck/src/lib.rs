@@ -49,7 +49,7 @@ impl Rank {
             11 => Rank::Jack,
             12 => Rank::Queen,
             13 => Rank::King,
-            _ => panic!("Invalid"),
+            _ => panic!("Invali"),
         }
     }
 
