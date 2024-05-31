@@ -1,14 +1,25 @@
+use std::collections::HashMap;
+
 pub fn is_anagram(s1: &str, s2: &str) -> bool {
-    // Check if both strings have the same length
-    if s1.len()!= s2.len() {
+    if s1.len() != s2.len() {
         return false;
     }
 
-    let mut chars_s1: Vec<char> = s1.chars().collect();
-    let mut chars_s2: Vec<char> = s2.chars().collect();
+    let mut char_count: HashMap<char, usize> = HashMap::new();
+    for c in s1.chars() {
+        *char_count.entry(c).or_insert(0) += 1;
+    }
 
-    chars_s1.sort_unstable();
-    chars_s2.sort_unstable();
+    for c in s2.chars() {
+        if let Some(count) = char_count.get_mut(&c) {
+            *count -= 1;
+            if *count == 0 {
+                char_count.remove(&c);
+            }
+        } else {
+            return false;
+        }
+    }
 
-    chars_s1 == chars_s2
+    char_count.is_empty()
 }
