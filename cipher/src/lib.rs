@@ -12,6 +12,10 @@ impl CipherError {
     }
 }
 pub fn cipher(original: &str, ciphered: &str) -> Option<Result<bool, CipherError>> {
+   
+    if original.is_empty() || original.len()!= ciphered_1.len() {
+        None
+    }
     let original_1 = original.to_lowercase();
     let ciphered_1 = ciphered.to_lowercase();
 
@@ -26,9 +30,7 @@ pub fn cipher(original: &str, ciphered: &str) -> Option<Result<bool, CipherError
             result.push(c);
         }
     }
-   if original.is_empty(){
-    None
-   }else if ciphered_1 == result {
+    if ciphered_1 == result {
         Some(Ok(true))
     } else {
         Some(Err(CipherError::new(false, result.to_string())))
