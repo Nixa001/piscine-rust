@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 
 pub fn is_anagram(s1: &str, s2: &str) -> bool {
     if s1.len() != s2.len() {
