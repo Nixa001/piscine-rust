@@ -14,7 +14,7 @@ impl CipherError {
 pub fn cipher(original: &str, ciphered: &str) -> Option<Result<bool, CipherError>> {
    
     if original.is_empty() || original.len()!= ciphered.len() {
-        None
+        return None;
     }
     let original_1 = original.to_lowercase();
     let ciphered_1 = ciphered.to_lowercase();
