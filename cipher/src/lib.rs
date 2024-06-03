@@ -1,8 +1,9 @@
 #[derive(Debug, Clone, Eq, PartialEq)]
 pub struct CipherError {
-   pub validation: bool,
-   pub expected: String,
+    pub validation: bool,
+    pub expected: String,
 }
+
 impl CipherError {
     pub fn new(validation: bool, expected: String) -> CipherError {
         CipherError {
@@ -11,31 +12,31 @@ impl CipherError {
         }
     }
 }
+
 pub fn cipher(original: &str, ciphered: &str) -> Option<Result<bool, CipherError>> {
-   
-  
-    let original_1 = original.to_lowercase();
-    let ciphered_1 = ciphered.to_lowercase();
+    if original.is_empty() || ciphered.is_empty() {
+        return None;
+    }
 
-    let mut result = String::new(); 
+    let mut result = String::new();
 
-    for c in original_1.chars() {
+    for c in original.chars() {
         if c.is_ascii_alphabetic() {
             let base = if c.is_ascii_lowercase() { b'a' } else { b'A' };
-            let mirror_char = base + (25 - (c as u8 - base));
-            result.push(mirror_char as char);
+            let mirror_char = (base + 25 - (c as u8 - base)) as char;
+            result.push(mirror_char);
         } else {
             result.push(c);
         }
     }
-    if original.is_empty() {
-      return  None
-    } if ciphered_1 == result.to_lowercase() {
+
+    if ciphered == result {
         Some(Ok(true))
     } else {
-        Some(Err(CipherError::new(false, result.to_string())))
+        Some(Err(CipherError::new(false, result)))
     }
 }
+
 
 fn main() {
     println!("{:?}", cipher("1Hello 2world!", "1Svool 2dliow!"));
