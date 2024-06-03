@@ -13,7 +13,7 @@ impl CipherError {
 }
 pub fn cipher(original: &str, ciphered: &str) -> Option<Result<bool, CipherError>> {
    
-    if original.is_empty() || original.len()!= ciphered_1.len() {
+    if original.is_empty() || original.len()!= ciphered.len() {
         None
     }
     let original_1 = original.to_lowercase();
