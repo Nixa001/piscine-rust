@@ -30,7 +30,7 @@ pub fn cipher(original: &str, ciphered: &str) -> Option<Result<bool, CipherError
     }
     if original.is_empty() {
       return  None
-    } if ciphered_1 == result {
+    } if ciphered_1 == result.to_lowercase() {
         Some(Ok(true))
     } else {
         Some(Err(CipherError::new(false, result.to_string())))
