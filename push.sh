@@ -6,7 +6,7 @@ read commit
 git commit -m "$commit"
 
 # Pousser vers Gitea
-git push -f
+git push 
 # origin main
 git branch -m master main  
 # Pousser vers GitHub
