@@ -1,4 +1,9 @@
 #!/bin/bash
+git add .
+echo "Your commit ..."
+read commit
+
+git commit -m "$commit"
 
 # Pousser vers Gitea
 git push 
