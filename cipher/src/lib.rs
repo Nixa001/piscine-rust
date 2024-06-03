@@ -28,8 +28,7 @@ pub fn cipher(original: &str, ciphered: &str) -> Option<Result<bool, CipherError
     }
    if original.is_empty(){
     None
-   } 
-   else if ciphered_1 == result {
+   }else if ciphered_1 == result {
         Some(Ok(true))
     } else {
         Some(Err(CipherError::new(false, result.to_string())))
