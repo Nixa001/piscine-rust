@@ -1,7 +1,7 @@
 extern crate chrono;
-use chrono::{Datelike, NaiveDate, Weekday };
+use chrono::{Datelike, NaiveDate, Weekday as wd };
 
-pub fn middle_day(year: i32) -> Option<Weekday> {
+pub fn middle_day(year: i32) -> Option<wd> {
     let is_bissextil = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 
     if is_bissextil {
