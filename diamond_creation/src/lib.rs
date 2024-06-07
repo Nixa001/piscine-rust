@@ -11,7 +11,6 @@ pub fn get_diamond(c: char) -> Vec<String> {
             let row = (ch - b'A') * 2 - 1;
             line.push_str(&" ".repeat(row as usize));
             line.push(ch as char);
-            // row += 2;
         }
         line.push_str(&" ".repeat(spaces));
         diamond.push(line);
@@ -26,7 +25,6 @@ pub fn get_diamond(c: char) -> Vec<String> {
             let row = (ch - b'A') * 2 - 1;
             line.push_str(&" ".repeat(row as usize));
             line.push(ch as char);
-            // row -= 2;
         }
         line.push_str(&" ".repeat(spaces));
         diamond.push(line);
