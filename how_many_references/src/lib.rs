@@ -21,7 +21,6 @@ pub fn how_many_references(ref_list: &Rc<String>) -> usize {
     Rc::strong_count(ref_list)
 }
 
-
 // fn main() {
 //     let a = Rc::new(String::from("a"));
 //     let b = Rc::new(String::from("b"));
@@ -45,7 +44,6 @@ pub fn how_many_references(ref_list: &Rc<String>) -> usize {
 //     println!("b: {:?}", how_many_references(&b));
 //     println!("c: {:?}", how_many_references(&c));
 // }
-
 
 // And its output:
 
