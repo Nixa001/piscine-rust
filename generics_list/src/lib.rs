@@ -10,7 +10,7 @@ pub struct Node<T> {
 }
 
 impl<T> List<T> {
-    pub fn new() -> List<T> {
+    pub fn new() -> Self {
         List { head: None }
     }
 
@@ -21,6 +21,7 @@ impl<T> List<T> {
         });
         self.head = Some(new_node);
     }
+
     pub fn pop(&mut self) -> Option<T> {
         self.head.take().map(|node| {
             self.head = node.next;
@@ -29,12 +30,12 @@ impl<T> List<T> {
     }
 
     pub fn len(&self) -> usize {
-        let mut counter: usize = 0;
+        let mut count = 0;
         let mut current = self.head.as_ref();
         while let Some(node) = current {
-            counter += 1;
-            current = self.node.next.as_ref();
+            count += 1;
+            current = node.next.as_ref();
         }
-        counter
+        count
     }
 }
