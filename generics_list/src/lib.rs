@@ -21,8 +21,7 @@ impl<T> List<T> {
         });
         self.head = Some(new_node);
     }
-
-    pub fn pop(&mut self) {
+    pub fn pop(&mut self) -> Option<T> {
         self.head.take().map(|node| {
             self.head = node.next;
             node.value
