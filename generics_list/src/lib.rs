@@ -19,7 +19,7 @@ impl<T> List<T> {
     pub fn push(&mut self, value: T) {
         let new_node = Node {
             value,
-            next: self.head.take().map(box::new),
+            next: self.head.take().map(Box::new),
         };
         self.head = Some(new_node);
     }
