@@ -8,12 +8,11 @@ pub enum Antigen {
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Clone)]
 pub enum RhFactor {
-    // Make RhFactor public
     Positive,
     Negative,
 }
 
-#[derive(PartialEq, Eq, PartialOrd, Ord, Clone)] // Derive Ord here as well
+#[derive(PartialEq, Eq, PartialOrd, Ord, Clone)]
 pub struct BloodType {
     pub antigen: Antigen,
     pub rh_factor: RhFactor,
@@ -86,7 +85,7 @@ impl fmt::Debug for BloodType {
 
 impl BloodType {
     pub fn can_receive_from(&self, other: &Self) -> bool {
-        match (self.antigen, &self.rh_factor) {
+        match (&self.antigen, &self.rh_factor) {
             (Antigen::O, RhFactor::Negative) => true,
             (Antigen::O, RhFactor::Positive) => other.rh_factor == RhFactor::Positive,
             (Antigen::A, RhFactor::Negative) => {
@@ -114,7 +113,7 @@ impl BloodType {
     }
 
     pub fn donors(&self) -> Vec<Self> {
-        let all_blood_types = vec![
+        let all_blood_types: Vec<BloodType> = vec![
             "O-".parse().unwrap(),
             "O+".parse().unwrap(),
             "A-".parse().unwrap(),
@@ -132,7 +131,7 @@ impl BloodType {
     }
 
     pub fn recipients(&self) -> Vec<BloodType> {
-        let all_blood_types = vec![
+        let all_blood_types: Vec<BloodType> = vec![
             "O-".parse().unwrap(),
             "O+".parse().unwrap(),
             "A-".parse().unwrap(),
